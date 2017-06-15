@@ -129,10 +129,10 @@ open class ScrollingNavigationController: UINavigationController, UIGestureRecog
       UIView.animate(withDuration: animated ? duration : 0, animations: { () -> Void in
         self.scrollWithDelta(self.fullNavbarHeight)
         visibleViewController.view.setNeedsLayout()
-        if self.navigationBar.isTranslucent {
+        /*if self.navigationBar.isTranslucent {
           let currentOffset = self.contentOffset
           self.scrollView()?.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y + self.navbarHeight)
-        }
+        }*/
       }) { _ in
         self.state = .collapsed
       }
@@ -156,10 +156,10 @@ open class ScrollingNavigationController: UINavigationController, UIGestureRecog
         self.lastContentOffset = 0;
         self.scrollWithDelta(-self.fullNavbarHeight, ignoreDelay: true)
         visibleViewController.view.setNeedsLayout()
-        if self.navigationBar.isTranslucent {
+        /*if self.navigationBar.isTranslucent {
           let currentOffset = self.contentOffset
           self.scrollView()?.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y - self.navbarHeight)
-        }
+        }*/
       }
       if animated {
         self.state = .scrolling
@@ -351,17 +351,17 @@ open class ScrollingNavigationController: UINavigationController, UIGestureRecog
     navigationBar.frame = frame
 
     // Resize the view if the navigation bar is not translucent
-    if !navigationBar.isTranslucent {
+    //if !navigationBar.isTranslucent {
       let navBarY = navigationBar.frame.origin.y + navigationBar.frame.size.height
       frame = topViewController.view.frame
       frame.origin = CGPoint(x: frame.origin.x, y: navBarY)
       frame.size = CGSize(width: frame.size.width, height: view.frame.size.height - (navBarY) - tabBarOffset)
       topViewController.view.frame = frame
-    }
+    //}
   }
 
   private func restoreContentOffset(_ delta: CGFloat) {
-    if navigationBar.isTranslucent || delta == 0 {
+    if /*navigationBar.isTranslucent ||*/ delta == 0 {
       return
     }
 
